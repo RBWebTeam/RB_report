@@ -2,7 +2,7 @@
   <head>
     <title> DashBoard Piechart</title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
 
@@ -146,14 +146,17 @@ $(document).ready(function(){
 
   </head>
   <body>
-    
-    <div id="piechart4" style="width: 900px; height: 500px;"></div>
-   <div id="piechart" style="width: 900px; height: 500px;"></div>
+  <div class="container">
+    <div class="row">
+	<div class="col-md-12">
+    <div id="piechart4" style="width: 900px; height:500px;"></div>
+   <!-- <div id="piechart" style="width: 900px; height: 500px;"></div> -->
    <div id="piechart1" style="width: 900px; height: 500px;"></div>
    <div id="piechart2" style="width: 900px; height: 500px;"></div>
 
    <div id="columnchart_material" style="width: 800px; height: 500px;"> </div>
- 
+    </div>
+ </div>
   </body>
 </html>
 

@@ -26,8 +26,8 @@
     <script type="text/javascript">
 $(document).ready(function(){
       google.charts.load('current', {'packages':['corechart']});
-       google.charts.setOnLoadCallback(piechart4);
-      google.charts.setOnLoadCallback(piechart);
+      google.charts.setOnLoadCallback(piechart4);
+      
       google.charts.setOnLoadCallback(piechart1);
       google.charts.setOnLoadCallback(piechart2); 
       google.charts.load('current', {'packages':['bar']});
@@ -40,7 +40,7 @@ $(document).ready(function(){
                         x+='0';
                        
 
-                         @foreach($query4 as $value)
+                         @foreach($bank as $value)
                                 arr.push(['{{$value->bank_id}}',{{$value->Count}}]);
                         @endforeach
 
@@ -59,24 +59,7 @@ $(document).ready(function(){
 
                                 
                 }
-function piechart() {
-                        // body...
-                        x="";        
-                        var arr=new Array(['Lead_Status_id','percentage']);
-                        x+='0';
-                        //var status;
-                        @foreach($query as $value)
-                                arr.push(['{{$value->Lead_Status_id}}',{{$value->count}}]);
-                        @endforeach
-                        var data = google.visualization.arrayToDataTable(arr);                        
-                        var option ={
-                                 title: 'Lead Status',
-                                 is3D: true
-                        };
-                        var chart = new google.visualization.PieChart(document.getElementById('piechart')); 
-                      chart.draw(data, option)
-                                
-                }  
+
 
 
                  function piechart1() {
@@ -86,7 +69,7 @@ function piechart() {
                         x+='0';
                         //var status;
                       
-                        @foreach($query1 as $value)
+                        @foreach($city as $value)
                                 arr.push(['{{$value->city_id}}',{{$value->CityCount}}]);
                         @endforeach
 
@@ -113,7 +96,7 @@ function piechart() {
                         x+='0';
                         //var status;
                       
-                        @foreach($query2 as $value)
+                        @foreach($team as $value)
                                 arr.push(['{{$value->Emp_Name}}',{{$value->count}}]);
                         @endforeach
 
@@ -134,7 +117,7 @@ function piechart() {
 
 
     var arrayv=Array(['month', 'Disbursed', 'Login', 'Sanctioned']);
-    var ar = <?php echo json_encode($quer3); ?>;
+    var ar = <?php echo json_encode($chart_data); ?>;
           
     var t = ar.length/3;
 

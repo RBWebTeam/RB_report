@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 
 
-Route::get('PiechartLeadStatus','PiechartController@getpiechartnew5');
+Route::get('PiechartLeadStatus','PiechartController@getpiechart');
 
 
 

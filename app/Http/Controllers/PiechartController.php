@@ -6,18 +6,13 @@ use DB;
 
 class PiechartController extends Controller
 {
- 
+ public function getpiechart(){
+ $bank = DB::select('call getBankWise_report ()');
+ $city = DB::select('call citywise_report()');
+ $team = DB::select('call get_teamwise_report()');
+ $chart_data = DB::select('call Productwiselead("2017,2018")');
 
-
-
-    public function getpiechartnew5(){
- $query4 = DB::select('call getBankWise_report ()');
- $query = DB::select('call Lead_Status_report ()');
- $query1 = DB::select('call citywise_report()');
- $query2 = DB::select('call get_teamwise_report()');
-  $quer3 = DB::select('call Productwiselead("2017,2018")');
-
- return view('PiechartLeadStatus',['query4'=>$query4,'query'=>$query,'query1'=>$query1,'query2'=>$query2,'quer3'=>$quer3]);
+ return view('PiechartLeadStatus',['bank'=>$bank,'city'=>$city,'team'=>$team,'chart_data'=>$chart_data]);
 
 	
 }

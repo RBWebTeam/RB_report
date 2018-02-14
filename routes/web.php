@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 
 
-<<<<<<< HEAD
+
 // Route::get('PiechartLeadStatus/{emp_code}','PiechartController@getpiechart');
 
  //Route::get('lead-status-report','PiechartController@getpiechart');
@@ -33,14 +33,6 @@ Route::get('lead-status-report','DashboardController@cartdashboard');
      // Route::get('abd','DashboardController@getpiechartdata22');
       //   Route::get('lead-status-report-test','PiechartController@getpiechart');
 
-      
-
-
-
-
-=======
-Route::get('PiechartLeadStatus','PiechartController@getpiechart');
->>>>>>> 74b404aca9e3a619f380eca4b35ef1c58ecdc43a
 
 
 

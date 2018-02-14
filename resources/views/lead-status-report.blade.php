@@ -4,24 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+   </head>
+   <body>
+     
+<!--       <div id="piechart3" style="width: 900px; height: 500px;"></div>
+ -->
 
-<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-      <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script> -->
+      <div class="container-fluid">
+    <div class="row">
+    
+    <div class="col-md-6 col-xs-12"> <div id="piechart1" style="width: 600px; height: 500px;"></div> </div>
+    
+    <div class="col-md-6 col-xs-12"> <div id="piechart2" style="width: 600px; height: 500px;"></div> </div>
+       
 
+   <div class="col-md-6 col-xs-12"> <div id="piechart3" style="width: 600px; height: 500px;"></div> </div>
+    <!-- <div class="col-md-6 col-xs-12"> <div id="piechart4" style="width: 600px; height: 500px;"></div> </div> -->
+ <div class="col-md-6 col-xs-12">  <div id="columnchart_material" style="width: 600px; height: 500px;"> </div>
+   </div>
+   
+   </div>
 
-      
-      <?php if(isset($_GET['empCode'])){?>
-                                <input type="hidden" name="empCode" id="empCode" value="<?php echo isset($_GET['empCode'])?$_GET['empCode']:'';?>">
-                                <?php }else{?>
-                                <input type="hidden" name="empCode" id="empCode" value="0">
-                                <?php }?>
+       
 
-
+   </body>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
       <script type="text/javascript">
          // Load the Visualization API and the line package.
           
@@ -32,13 +41,12 @@
          
          // Set a callback to run when the Google Visualization API is loaded.
 
- var  empID=$('#empCode').val();
-
+ 
 
          var fdata=Array();
          $.ajax({
                 type: 'GET',
-                  url: "{{url('ab')}}/?empCode="+empID,
+                  url: "{{url('ab')}}",
                // url: "{{url('ab')}}",
                 success: function (msg) {
 
@@ -68,12 +76,12 @@
                                 
                 }
                 
- var  empID=$('#empCode').val();
+
                  var fdata=Array();
          $.ajax({
                 type: 'GET',
 
-   url: "{{url('bd')}}/?empCode="+empID,
+   url: "{{url('bd')}}",
                 //url: "{{url('bd')}}",
 
                 success: function (msg) {
@@ -104,11 +112,11 @@
                                 
                 }
 
-                 var  empID=$('#empCode').val();
+                 
                  var fdata=Array();
          $.ajax({
                 type: 'GET',
-                url: "{{url('cd')}}/?empCode="+empID,
+                url: "{{url('cd')}}",
                 success: function (msg) {
 
                     av=JSON.parse(msg);
@@ -140,14 +148,11 @@
               
 
 
-var  empID=$('#empCode').val();
-                 var fdata=Array();
+
+var fdata=Array();
          $.ajax({
                 type: 'GET',
-
-   url: "{{url('ad')}}/?empCode="+empID,
-                //url: "{{url('bd')}}",
-
+                url: "{{url('ad')}}",
                 success: function (msg) {
 
                     av=JSON.parse(msg);
@@ -155,16 +160,6 @@ var  empID=$('#empCode').val();
                      
                     var dat=JSON.stringify(av.result);
                      $.each(av.result, function(key,val) {
-
-    //                      var t = val.length/5;
-
-    // for(var i = 0; i < t;i++)
-    // {
-    //   var j = i * 5;
-     
-
-                          
-
                          arr.push([String(val.month), (val.leadStatus),(val.leadCount)]);
                      
         });
@@ -199,30 +194,6 @@ var  empID=$('#empCode').val();
 
             });
       </script>
-   </head>
-   <body>
-     
-<!--       <div id="piechart3" style="width: 900px; height: 500px;"></div>
- -->
-
-      <div class="container-fluid">
-    <div class="row">
-    
-    <div class="col-md-6 col-xs-12"> <div id="piechart1" style="width: 600px; height: 500px;"></div> </div>
-    
-    <div class="col-md-6 col-xs-12"> <div id="piechart2" style="width: 600px; height: 500px;"></div> </div>
-       
-
-   <div class="col-md-6 col-xs-12"> <div id="piechart3" style="width: 600px; height: 500px;"></div> </div>
-    <!-- <div class="col-md-6 col-xs-12"> <div id="piechart4" style="width: 600px; height: 500px;"></div> </div> -->
- <div class="col-md-6 col-xs-12">  <div id="columnchart_material" style="width: 600px; height: 500px;"> </div>
-   </div>
-   
-   </div>
-
-       
-
-   </body>
 </html>
 
 

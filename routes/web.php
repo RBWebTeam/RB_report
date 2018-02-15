@@ -17,25 +17,16 @@ Route::get('/', function () {
 
 
 
-// Route::get('PiechartLeadStatus/{emp_code}','PiechartController@getpiechart');
 
- //Route::get('lead-status-report','PiechartController@getpiechart');
 Route::get('lead-status-report','DashboardController@cartdashboard');
 
- Route::get('lead-status-report-test','PiechartController@getpiechartdata');
-  Route::get('ab','DashboardController@getpiechartdata');
-   
-  // Route::get('Dashboard-bankwise-report','DashboardController@cartdashboard');
-  Route::get('bd','DashboardController@getpiechartdata1');
-  Route::get('cd','DashboardController@getpiechartdata2');
-    Route::get('ad','DashboardController@getpiechartdata3');
-      //Route::get('Dashboard-bankwise-report','DashboardController@getpiechartdata3');
-     // Route::get('abd','DashboardController@getpiechartdata22');
-      //   Route::get('lead-status-report-test','PiechartController@getpiechart');
-
-      
-
-
+ //Route::get('lead-status-report-test','PiechartController@getpiechartdata');
+  Route::get('citywise-report','DashboardController@citywiseleadreport');
+  Route::get('bankwise-report','DashboardController@bankwiseleadreport');
+  Route::get('teamwise-report','DashboardController@teamwiseleadreport');
+    Route::get('monthwise-report','DashboardController@monthwiseleadreport');
+     Route::get('productwise-report','DashboardController@productwiseleadreport');
+      //  Route::get('Barchartdemo-report','PiechartController@productwiseleadreport');
 
 
 

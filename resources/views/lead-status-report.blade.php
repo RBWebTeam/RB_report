@@ -4,42 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+   </head>
+   <body>
+     
 
-<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-      <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script> -->
+    <div class="container-fluid">
+    <div class="row">
+    <div class="col-md-6 col-xs-12"> <div id="citywisereport" style="width: 100%;height: 500px;"></div> </div>
 
+    <div class="col-md-6 col-xs-12"><div id="bankwisereport" style="width: 100%;height: 500px;"></div> </div>
+       
 
-      
-      <?php if(isset($_GET['empCode'])){?>
-                                <input type="hidden" name="empCode" id="empCode" value="<?php echo isset($_GET['empCode'])?$_GET['empCode']:'';?>">
-                                <?php }else{?>
-                                <input type="hidden" name="empCode" id="empCode" value="0">
-                                <?php }?>
-
-
+   <div class="col-md-6 col-xs-12">  <div id="teamwisereport" style="width: 100%;height: 500px;"></div> </div>
+    <div class="col-md-6 col-xs-12">  <div id="productwisereport" style="width: 100%;height: 500px;"></div> </div>
+ 
+   </div>
+   </div>   
+<div class="col-md-12 col-xs-12">  <div id="monthwisereport" style="height: 500px;"> </div>
+   </body>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
       <script type="text/javascript">
-         // Load the Visualization API and the line package.
+        
           
          google.charts.load('current', {'packages':['corechart']});
             google.charts.load('current', {'packages':['bar']});
-      //google.charts.setOnLoadCallback(drawChart);
-           
-         
-         // Set a callback to run when the Google Visualization API is loaded.
+      
 
- var  empID=$('#empCode').val();
-
+ // var  empID=$('#empCode').val();
 
          var fdata=Array();
          $.ajax({
                 type: 'GET',
-                  url: "{{url('ab')}}/?empCode="+empID,
-               // url: "{{url('ab')}}",
+               
+                   url: "{{url('citywise-report')}}",
                 success: function (msg) {
 
                     av=JSON.parse(msg);
@@ -53,28 +52,28 @@
 
             console.log(arr);
                   
-                  google.charts.setOnLoadCallback(piechart1);
-                 function piechart1() {
+                  google.charts.setOnLoadCallback(citywisereport);
+                 function citywisereport() {
                         var data = google.visualization.arrayToDataTable(arr);                        
                         var option ={
 
-                                 title: 'CityWise Report',
+                                 title: 'Citywise Report',
                                  is3D: true
                         };
 
-                        var chart = new google.visualization.PieChart(document.getElementById('piechart1'));
+                        var chart = new google.visualization.PieChart(document.getElementById('citywisereport'));
                         
                         chart.draw(data, option);
                                 
                 }
                 
- var  empID=$('#empCode').val();
+
                  var fdata=Array();
          $.ajax({
                 type: 'GET',
 
-   url: "{{url('bd')}}/?empCode="+empID,
-                //url: "{{url('bd')}}",
+   url: "{{url('bankwise-report')}}",
+                
 
                 success: function (msg) {
 
@@ -89,32 +88,35 @@
 
             console.log(arr);
                   
-                  google.charts.setOnLoadCallback(piechart2);
-                 function piechart2() {
+                  google.charts.setOnLoadCallback(bankwisereport);
+                 function bankwisereport() {
                         var data = google.visualization.arrayToDataTable(arr);                        
                         var option ={
 
-                                 title: 'BankWise Report',
+                                 title: 'Bankwise Report',
                                  is3D: true
                         };
 
-                        var chart = new google.visualization.PieChart(document.getElementById('piechart2'));
+                        var chart = new google.visualization.PieChart(document.getElementById('bankwisereport'));
                         
                         chart.draw(data, option);
                                 
                 }
 
-                 var  empID=$('#empCode').val();
+                 
                  var fdata=Array();
          $.ajax({
                 type: 'GET',
-                url: "{{url('cd')}}/?empCode="+empID,
+                url: "{{url('teamwise-report')}}",
+
                 success: function (msg) {
 
                     av=JSON.parse(msg);
                      var arr=new Array(['empName','leadCount']);
                      
                     var dat=JSON.stringify(av.result);
+
+
                      $.each(av.result, function(key,val) {
                           
                          arr.push([String (val.empName),val.leadCount]);
@@ -122,16 +124,16 @@
 
             console.log(arr);
                   
-                  google.charts.setOnLoadCallback(piechart3);
-                 function piechart3() {
+                  google.charts.setOnLoadCallback(teamwisereport);
+                 function teamwisereport() {
                         var data = google.visualization.arrayToDataTable(arr);                        
                         var option ={
 
-                                 title: 'teamwise Report',
+                                 title: 'Teamwise Report',
                                  is3D: true
                         };
 
-                        var chart = new google.visualization.PieChart(document.getElementById('piechart3'));
+                        var chart = new google.visualization.PieChart(document.getElementById('teamwisereport'));
                         
                         chart.draw(data, option);
                                 
@@ -140,49 +142,76 @@
               
 
 
-var  empID=$('#empCode').val();
-                 var fdata=Array();
+
+         var fdata=Array();
          $.ajax({
                 type: 'GET',
-
-   url: "{{url('ad')}}/?empCode="+empID,
-                //url: "{{url('bd')}}",
-
+                  url: "{{url('productwise-report')}}",
+                  
                 success: function (msg) {
 
                     av=JSON.parse(msg);
-                     var arr=new Array(['Month', 'leadStatus','leadCount']);
+                     var arr=new Array(['productName','leadCount','leadStatus' ]);
                      
                     var dat=JSON.stringify(av.result);
                      $.each(av.result, function(key,val) {
-
-    //                      var t = val.length/5;
-
-    // for(var i = 0; i < t;i++)
-    // {
-    //   var j = i * 5;
-     
-
                           
-
-                         arr.push([String(val.month), (val.leadStatus),(val.leadCount)]);
-                     
+                         arr.push([String(val.productName),(val.leadCount),(val.leadStatus)]);
         });
 
             console.log(arr);
+                  
+                  google.charts.setOnLoadCallback(productwisereport);
+                 function productwisereport() {
+                        var data = google.visualization.arrayToDataTable(arr);                        
+                        var option ={
+
+                                 title: 'Productwise Report',
+                                 is3D: true
+                        };
+
+                        var chart = new google.visualization.PieChart(document.getElementById('productwisereport'));
+                        
+                        chart.draw(data, option);                                
+                }
+
+
+var fdata=Array();
+         $.ajax({
+                type: 'GET',
+                url: "{{url('monthwise-report')}}",
+                success: function (msg) {
+
+                    var test=JSON.parse(msg);
+                     
+                     var arr=new Array(['Month', 'Disbursed','Login','Sanctioned']);
+   
+        var av = test.result;
+
+    var t = av.length/3;
+
+    for(var i = 0; i < t;i++)
+    {
+      var j = i * 3;
+        
+      var vas=([av[j].month,av[j].leadCount, av[j+1].leadCount, av[j+2].leadCount]);
+      arr.push(vas);
+    }
+
+     
+        console.log(av);
       google.charts.setOnLoadCallback(drawChart);
                  function drawChart() {
                         var data = google.visualization.arrayToDataTable(arr);                        
                         var options ={
 
-                                 title: 'productwise Report',
+                                 title: 'Monthwise Lead Report',
                                  is3D: true
                         };
 
-                      var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+                      var chart = new google.charts.Bar(document.getElementById('monthwisereport'));
                     chart.draw(data, google.charts.Bar.convertOptions(options));
                 }
-
 
                  }
 
@@ -198,31 +227,12 @@ var  empID=$('#empCode').val();
           }
 
             });
-      </script>
-   </head>
-   <body>
-     
-<!--       <div id="piechart3" style="width: 900px; height: 500px;"></div>
- -->
 
-      <div class="container-fluid">
-    <div class="row">
-    
-    <div class="col-md-6 col-xs-12"> <div id="piechart1" style="width: 600px; height: 500px;"></div> </div>
-    
-    <div class="col-md-6 col-xs-12"> <div id="piechart2" style="width: 600px; height: 500px;"></div> </div>
+  }
+
+            });       
        
-
-   <div class="col-md-6 col-xs-12"> <div id="piechart3" style="width: 600px; height: 500px;"></div> </div>
-    <!-- <div class="col-md-6 col-xs-12"> <div id="piechart4" style="width: 600px; height: 500px;"></div> </div> -->
- <div class="col-md-6 col-xs-12">  <div id="columnchart_material" style="width: 600px; height: 500px;"> </div>
-   </div>
-   
-   </div>
-
-       
-
-   </body>
+    </script>
 </html>
 
 
